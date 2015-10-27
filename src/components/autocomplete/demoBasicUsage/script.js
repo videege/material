@@ -81,5 +81,8 @@
       };
 
     }
+
+    self.searchText = [];
+    self.selectedItem = [];
   }
 })();

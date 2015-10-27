@@ -98,7 +98,37 @@ describe('<md-autocomplete>', function() {
       element.remove();
     }));
 
-    it('should allow you to set an input id without floating label', inject(function() {
+    iit('should not error if searchText is set to undefined', inject(function($material, $exceptionHandler) {
+      var scope = createScope();
+      var template = '\
+          <md-autocomplete\
+              md-selected-item="selectedItem"\
+              md-search-text="searchText"\
+              md-items="item in match(searchText)"\
+              md-item-text="item.display"\
+              placeholder="placeholder">\
+            <span md-highlight-text="searchText">{{item.display}}</span>\
+          </md-autocomplete>';
+      var element = compile(template, scope);
+      var ctrl = element.controller('mdAutocomplete');
+      var ul = element.find('ul');
+
+      $material.flushInterimElement();
+
+      expect(scope.searchText).toBe('');
+      expect(scope.selectedItem).toBe(null);
+
+      // Update the scope
+      scope.searchText = undefined;
+      waitForVirtualRepeat(element);
+
+      // Expect no errors to be thrown
+      expect($exceptionHandler.errors).toEqual([]);
+
+      element.remove();
+    }));
+
+    it('should not error if searchText is set to undefined', inject(function() {
       var scope = createScope(null, {inputId: 'custom-input-id'});
       var template = '\
           <md-autocomplete\
