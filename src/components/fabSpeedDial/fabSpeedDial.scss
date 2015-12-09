@@ -118,6 +118,13 @@ md-fab-speed-dial {
   /*
    * Handle the animations
    */
+  &.md-fling.md-noop {
+    // For the intial animation, set the duration to be instant
+    .md-fab-action-item {
+      transition-duration: 0s;
+    }
+  }
+
   &.md-scale {
     .md-fab-action-item {
       opacity: 0;

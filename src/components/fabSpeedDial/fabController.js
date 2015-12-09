@@ -135,9 +135,13 @@
 
     // Fire the animations once in a separate digest loop to initialize them
     function fireInitialAnimations() {
-      $mdUtil.nextTick(function() {
-        $animate.addClass($element, 'md-noop');
-      });
+      var delay = 100; // Delay until after the element has been appened to the DOM
+
+      $timeout(function() {
+        $animate.addClass($element, 'md-noop').then(function() {
+          $element.removeClass('md-noop');
+        });
+      }, delay);
     }
 
     function enableKeyboard() {
