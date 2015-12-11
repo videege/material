@@ -6,7 +6,7 @@
  * @description
  *
  * Steppers do stuff.
- * 
+ *
  *
  */
 
@@ -23,6 +23,7 @@ function StepperDirective() {
       attr["$mdStepperTemplate"] = element.html();
       return '' +
         '<md-stepper-wrapper>' +
+          '<p>Whatup dudes!</p>'
         '</md-stepper-wrapper>';
     },
     controller: 'MdStepperController',
